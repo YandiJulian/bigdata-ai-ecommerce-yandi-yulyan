@@ -1,0 +1,171 @@
+:root{
+  --bg:#0f1724;
+  --card:#0b1220;
+  --muted:#9aa4b2;
+  --accent1:#4fd1c5;
+  --accent2:#7c3aed;
+  --glass: rgba(255,255,255,0.04);
+  --radius:12px;
+  --max-width:1100px;
+  --container-padding:28px;
+  font-synthesis: none;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+body{
+  margin:0;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  background:linear-gradient(180deg,#071022 0%, #071827 60%);
+  color: #e6eef6;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.55;
+  padding-bottom:80px;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.container{
+  max-width:var(--max-width);
+  margin:28px auto;
+  padding:0 var(--container-padding);
+  display:flex;
+  gap:24px;
+  align-items:flex-start;
+  transition: all 0.3s ease;
+}
+
+.site-header{
+  background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border-bottom:1px solid rgba(255,255,255,0.03);
+  position:sticky;
+  top:0;
+  z-index:40;
+  backdrop-filter: blur(6px);
+  transition: all 0.3s ease;
+}
+
+.header-inner{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+  padding:20px var(--container-padding);
+}
+
+.brand {
+  display: flex;
+  gap: 10px; /* sebelumnya mungkin 18px, dikurangi jadi 10px */
+  align-items: center;
+}
+
+.meta h1{margin:0;font-size:18px;letter-spacing:-0.2px; transition: color 0.3s ease;}
+.meta .author{margin:6px 0 0;color:var(--muted);font-size:13px; transition: color 0.3s ease;}
+
+/* TOC */
+.toc{position:relative}
+.toc-toggle{
+  background:transparent;border:1px solid rgba(255,255,255,0.04);padding:8px 12px;border-radius:10px;color:var(--muted);
+  font-size:13px;cursor:pointer;
+  transition: all 0.3s ease;
+}
+.toc-toggle:hover{color:#4fd1c5; border-color: rgba(79,209,197,0.3);}
+
+.toc-list{
+  position:absolute;right:0;top:44px;background:var(--card);
+  padding:12px;border-radius:10px;list-style:none;margin:0;
+  display:none;width:220px;border:1px solid rgba(255,255,255,0.03);
+  transition: all 0.3s ease;
+}
+.toc-list.open{display:block}
+.toc-list li{margin:8px 0; transition: all 0.3s ease;}
+.toc-list a{color:var(--muted);text-decoration:none;font-size:14px; transition: color 0.3s ease;}
+.toc-list a:hover{color:#4fd1c5;}
+
+/* Layout main */
+.article-card{
+  flex:1;
+  background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+  padding:28px;
+  border-radius:var(--radius);
+  border:1px solid rgba(255,255,255,0.03);
+  transition: all 0.3s ease;
+}
+
+/* Section hover */
+.article-card section:hover {
+  background-color: rgba(255, 255, 255, 0.02);
+  transform: translateY(-2px);
+}
+.article-card section {
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Aside */
+.aside-card{
+  width:320px;
+  position:relative;
+  background:linear-gradient(180deg, rgba(255,255,255,0.015), transparent);
+  padding:20px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,0.03);
+  transition: all 0.3s ease;
+}
+.sticky{position:sticky;top:92px}
+.tags span{
+  display:inline-block;
+  background:rgba(255,255,255,0.03);
+  padding:6px 10px;
+  margin:6px 6px 0 0;
+  border-radius:999px;
+  color:var(--muted);
+  font-size:13px;
+  transition: all 0.3s ease;
+}
+.tags span:hover{
+  background-color: rgba(79, 209, 197, 0.1);
+  color:#4fd1c5;
+  cursor:pointer;
+}
+
+/* Typography & content */
+h2{font-size:20px;margin-top:6px;color:#e8f2ff; transition: color 0.3s ease;}
+h3{font-size:16px;margin:12px 0 6px;color:#dbeafe; transition: color 0.3s ease;}
+p,li{color:var(--muted);font-size:15px; transition: color 0.3s ease;}
+ul,ol{padding-left:20px}
+.references li{margin:6px 0;color:var(--muted); transition: color 0.3s ease;}
+
+/* Card subtle lines */
+.article-card > section{padding:14px 0;border-bottom:1px dashed rgba(255,255,255,0.02)}
+.article-card > section:last-child{border-bottom:none}
+
+/* Responsive */
+@media (max-width:980px){
+  .container{flex-direction:column;padding:18px}
+  .aside-card{width:100%}
+  .meta h1{font-size:16px}
+}
+
+/* Accessibility focus */
+a:focus, button:focus{outline:2px solid rgba(79,209,197,0.18);outline-offset:3px}
+
+/* Print tweaks */
+@media print{
+  body{background:white;color:black}
+  .site-header,.toc-toggle,.aside-card{display:none}
+  .container{max-width:100%;padding:0}
+  .article-card{border:none;background:transparent;padding:0}
+}
+
+.logo-img {
+  width: 40px;      /* ukuran logo tetap */
+  height: 40px;
+  border-radius: 12px;
+  object-fit: cover;
+}
